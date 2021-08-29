@@ -1,0 +1,15 @@
+version: '3.0' # specify docker-compose version
+
+services:
+
+ express: #backend server (express - nodejs)
+  build: backend 
+  ports:
+  - "3000:3000" 
+  links:
+  - database # link this service to the database service
+
+ database: #db server (mongodb)
+  image: mongo 
+  ports:
+  - "27017:27017" 

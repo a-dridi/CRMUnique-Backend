@@ -7,8 +7,8 @@ Your clients can check the status of a project by entering their email address a
 The application needs Express JS, NodeJS and Mongo Database. All needed dependencies are saved in the package.json.
 
 ## Test cases
-Test cases 100% success.
-The test cases are in the path: /test/routes/
+100% success.
+The test cases are in the path: [/test/routes/](https://github.com/a-dridi/CRMUnique-Backend/tree/main/test/routes)
 
 ## Configuration
 

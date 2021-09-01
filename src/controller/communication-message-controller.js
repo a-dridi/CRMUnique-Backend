@@ -8,7 +8,8 @@ const ApiResponse = require("../util/api-response");
 exports.communicationMessageList = function (req, res, next) {
     try {
         CommunicationMessage.find({
-            deleted: false
+            deleted: false,
+            customerId: req.params.customerId
         }, "_id communicationType message tag1 tag2 tag3 tag4 tag5 createdDate").then((communicationMessages) => {
             ApiResponse.successResponse(res, communicationMessages);
         })
@@ -43,6 +44,7 @@ exports.communicationMessageById = function (req, res, next) {
 exports.communicationMessageSave = function (req, res, next) {
     try {
         let newCommunicationMessage = new CommunicationMessage({
+            customerId: req.body.customerId,
             communicationType: req.body.communicationType,
             message: req.body.message,
             tag1: req.body.tag1,
@@ -73,6 +75,7 @@ exports.communicationMessageSave = function (req, res, next) {
 exports.communicationMessageUpdate = function (req, res, next) {
     let updateCommunicationMessage = new CommunicationMessage({
         _id: req.body._id,
+        customerId: req.body.customerId,
         communicationType: req.body.communicationType,
         message: req.body.message,
         tag1: req.body.tag1,

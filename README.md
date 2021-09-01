@@ -6,8 +6,10 @@ Your clients can check the status of a project by entering their email address a
 
 The application needs Express JS, NodeJS and Mongo Database. All needed dependencies are saved in the package.json.
 
-## Test cases
+## Unit test
 100% success.
+![Screenshot test case results](https://raw.githubusercontent.com/a-dridi/CRMUnique-Backend/main/test_case_info.PNG)
+
 The test cases are in the path: [/test/routes/](https://github.com/a-dridi/CRMUnique-Backend/tree/main/test/routes)
 
 ## Configuration
@@ -65,16 +67,6 @@ npm run build
 
 Copy the content of the folder "build" to your server.
  
-
-- Frontend:
-```
-npm install
-```
-```
-ng build --prod=true
-```
-
-Copy the content of the folder "public" to your server.
 
 
 ## Authors

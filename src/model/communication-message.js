@@ -2,9 +2,12 @@ const mongoose = require ('mongoose');
 const Schema = mongoose.Schema;
 
 let communicationMessage = new Schema({
+    customerId: {
+        type: String,
+        required: true
+    },
     communicationType: {
-        type: Schema.ObjectId,
-        ref: "CommunicationType"
+        type: String
     },
     message: {
         type: String,

@@ -3,7 +3,7 @@ const CommunicationMessageController = require("../controller/communication-mess
 
 var router = express.Router();
 
-router.get("/all", CommunicationMessageController.communicationMessageList);
+router.get("/all/:customerId", CommunicationMessageController.communicationMessageList);
 router.get("/get/byId/:id", CommunicationMessageController.communicationMessageById);
 router.post("/add", CommunicationMessageController.communicationMessageSave);
 router.post("/update", CommunicationMessageController.communicationMessageUpdate);

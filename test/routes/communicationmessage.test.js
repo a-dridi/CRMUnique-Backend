@@ -31,13 +31,16 @@ describe("# CommunicationMessages API Tests", () => {
                 title: "Email",
                 colorHex: "#cccccc"
             });
+            let customerId = "212313";
+
             newCommunicationType.save()
                 .then(savedCommunicationType => {
                     chai.request(serverApp)
                         .post('/data/communicationMessage/add')
                         .set('content-type', 'application/x-www-form-urlencoded')
                         .send({
-                            communicationType: savedCommunicationType._id,
+                            customerId: customerId,
+                            communicationType: savedCommunicationType.title,
                             message: message,
                             tag1: tag1,
                             tag2: tag2,
@@ -77,13 +80,16 @@ describe("# CommunicationMessages API Tests", () => {
                 title: "Email",
                 colorHex: "#cccccc"
             });
+            let customerId = "212313";
+
             newCommunicationType.save()
                 .then(savedCommunicationType => {
                     chai.request(serverApp)
                         .post('/data/communicationMessage/add')
                         .set('content-type', 'application/x-www-form-urlencoded')
                         .send({
-                            communicationType: savedCommunicationType._id,
+                            customerId: customerId,
+                            communicationType: savedCommunicationType.title,
                             message: message,
                             tag1: tag1,
                             tag2: tag2,
@@ -123,13 +129,16 @@ describe("# CommunicationMessages API Tests", () => {
                 title: "Email",
                 colorHex: "#cccccc"
             });
+            let customerId = "212313";
+
             newCommunicationType.save()
                 .then(savedCommunicationType => {
                     chai.request(serverApp)
                         .post('/data/communicationMessage/add')
                         .set('content-type', 'application/x-www-form-urlencoded')
                         .send({
-                            communicationType: savedCommunicationType._id,
+                            customerId: customerId,
+                            communicationType: savedCommunicationType.title,
                             message: message,
                             tag1: tag1,
                             tag2: tag2,
@@ -167,15 +176,17 @@ describe("# CommunicationMessages API Tests", () => {
                 title: "Email",
                 colorHex: "#cccccc"
             });
+            let customerId = "212313";
 
             let savedCommunicationTypeId = "";
             newCommunicationType.save()
                 .then(savedCommunicationType => {
-                    savedCommunicationTypeId = savedCommunicationType._id;
+                    savedCommunicationTypeId = savedCommunicationType.title;
                     chai.request(serverApp)
                         .post('/data/communicationMessage/add')
                         .set('content-type', 'application/x-www-form-urlencoded')
                         .send({
+                            customerId: customerId,
                             communicationType: savedCommunicationTypeId,
                             message: message,
                             tag1: tag1,
@@ -190,6 +201,7 @@ describe("# CommunicationMessages API Tests", () => {
                                 .post('/data/communicationMessage/add')
                                 .set('content-type', 'application/x-www-form-urlencoded')
                                 .send({
+                                    customerId: customerId,
                                     communicationType: savedCommunicationTypeId,
                                     message: message,
                                     tag1: tag1,
@@ -200,7 +212,7 @@ describe("# CommunicationMessages API Tests", () => {
                                 })
                                 .end((err, res) => {
                                     chai.request(serverApp)
-                                        .get('/data/communicationMessage/all')
+                                        .get('/data/communicationMessage/all/'+customerId)
                                         .end((err, res) => {
                                             res.should.have.status(200);
                                             res.body.should.be.a('array');
@@ -230,15 +242,17 @@ describe("# CommunicationMessages API Tests", () => {
                 title: "Email",
                 colorHex: "#cccccc"
             });
+            let customerId = "212313";
 
             let savedCommunicationTypeId = "";
             newCommunicationType.save()
                 .then(savedCommunicationType => {
-                    savedCommunicationTypeId = savedCommunicationType._id;
+                    savedCommunicationTypeId = savedCommunicationType.title;
                     chai.request(serverApp)
                         .post('/data/communicationMessage/add')
                         .set('content-type', 'application/x-www-form-urlencoded')
                         .send({
+                            customerId: customerId,
                             communicationType: savedCommunicationTypeId,
                             message: message,
                             tag1: tag1,
@@ -253,6 +267,7 @@ describe("# CommunicationMessages API Tests", () => {
                                 .post('/data/communicationMessage/update')
                                 .set('content-type', 'application/x-www-form-urlencoded')
                                 .send({
+                                    customerId: customerId,
                                     communicationType: savedCommunicationTypeId,
                                     message: message,
                                     tag1: tag1,

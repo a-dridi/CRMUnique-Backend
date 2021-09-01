@@ -1,7 +1,8 @@
 process.env.NODE_ENV = 'test';
 
 const mongoose = require("mongoose");
-const CustomerNote = require("../../src/model/communication-type");
+const CustomerNote = require("../../src/model/customer-note");
+const Customer = require("../../src/model/customer");
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
@@ -23,11 +24,13 @@ describe("# CustomerNote API Tests", () => {
             let description = "Descriptions of Customer A";
             let attachmentLink = "http://LINK";
             let createdDate = new Date();
+            let customerId = "212313";
 
             chai.request(serverApp)
                 .post('/data/customerNote/add')
                 .set('content-type', 'application/x-www-form-urlencoded')
                 .send({
+                    customerId: customerId,
                     title: title,
                     description: description,
                     attachmentLink: attachmentLink,
@@ -36,7 +39,7 @@ describe("# CustomerNote API Tests", () => {
                 })
                 .end((err, res) => {
                     res.should.have.status(200);
-                    res.body.title.should.be.eql(title)
+                    res.body.title.should.be.eql(title);
                     res.body.description.should.be.eql(description);
                     res.body.attachmentLink.should.be.eql(attachmentLink);
                     should.exist(res.body._id);
@@ -52,11 +55,13 @@ describe("# CustomerNote API Tests", () => {
             let description = "Descriptions of Customer A";
             let attachmentLink = "http://LINK";
             let createdDate = new Date();
+            let customerId = "212313";
 
             chai.request(serverApp)
                 .post('/data/customerNote/add')
                 .set('content-type', 'application/x-www-form-urlencoded')
                 .send({
+                    customerId: customerId,
                     title: title,
                     description: description,
                     attachmentLink: attachmentLink,
@@ -86,11 +91,13 @@ describe("# CustomerNote API Tests", () => {
             let description = "Descriptions of Customer A";
             let attachmentLink = "http://LINK";
             let createdDate = new Date();
+            let customerId = "212313";
 
             chai.request(serverApp)
                 .post('/data/customerNote/add')
                 .set('content-type', 'application/x-www-form-urlencoded')
                 .send({
+                    customerId: customerId,
                     title: title,
                     description: description,
                     attachmentLink: attachmentLink,
@@ -117,11 +124,13 @@ describe("# CustomerNote API Tests", () => {
             let description = "Descriptions of Customer A";
             let attachmentLink = "http://LINK";
             let createdDate = new Date();
+            let customerId = "212313";
 
             chai.request(serverApp)
                 .post('/data/customerNote/add')
                 .set('content-type', 'application/x-www-form-urlencoded')
                 .send({
+                    customerId: customerId,
                     title: title,
                     description: description,
                     attachmentLink: attachmentLink,
@@ -134,6 +143,7 @@ describe("# CustomerNote API Tests", () => {
                         .post('/data/customerNote/add')
                         .set('content-type', 'application/x-www-form-urlencoded')
                         .send({
+                            customerId: customerId,
                             title: title,
                             description: description,
                             attachmentLink: attachmentLink,
@@ -142,7 +152,7 @@ describe("# CustomerNote API Tests", () => {
                         })
                         .end((err, res) => {
                             chai.request(serverApp)
-                                .get('/data/customerNote/all')
+                                .get('/data/customerNote/all/'+customerId)
                                 .end((err, res) => {
                                     res.should.have.status(200);
                                     res.body.should.be.a('array');
@@ -161,11 +171,13 @@ describe("# CustomerNote API Tests", () => {
             let description = "Descriptions of Customer A";
             let attachmentLink = "http://LINK";
             let createdDate = new Date();
+            let customerId = "212313";
 
             chai.request(serverApp)
                 .post('/data/customerNote/add')
                 .set('content-type', 'application/x-www-form-urlencoded')
                 .send({
+                    customerId: customerId,
                     title: title,
                     description: description,
                     attachmentLink: attachmentLink,
@@ -178,6 +190,7 @@ describe("# CustomerNote API Tests", () => {
                         .post('/data/customerNote/update')
                         .set('content-type', 'application/x-www-form-urlencoded')
                         .send({
+                            customerId: customerId,
                             title: title,
                             description: description,
                             attachmentLink: attachmentLink,

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let customerNote = new Schema({
+    customerId: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true

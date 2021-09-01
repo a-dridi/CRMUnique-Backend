@@ -8,7 +8,7 @@ const ApiResponse = require("../util/api-response");
 exports.communicationTypeList = function (req, res, next) {
     try {
         CommunicationType.find({
-            deleted: false
+            deleted: false,
         }, "_id title colorHex").then((communicationTypes) => {
             ApiResponse.successResponse(res, communicationTypes);
         })

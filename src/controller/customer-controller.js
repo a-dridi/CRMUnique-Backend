@@ -58,6 +58,7 @@ exports.customerSave = function (req, res, next) {
             website: req.body.website,
             facebookUrl: req.body.facebookUrl,
             twitterUrl: req.body.twitterUrl,
+            linkedinUrl: req.body.linkedinUrl,
             xingUrl: req.body.xingUrl,
             socialmediaUrl: req.body.socialmediaUrl,
             language: req.body.language,

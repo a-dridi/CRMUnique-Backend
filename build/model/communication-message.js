@@ -1,19 +1,15 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var mongoose = require('mongoose');
 
-var _mongoose = _interopRequireDefault(require("mongoose"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var Schema = _mongoose["default"].Schema;
+var Schema = mongoose.Schema;
 var communicationMessage = new Schema({
+  customerId: {
+    type: String,
+    required: true
+  },
   communicationType: {
-    type: Schema.ObjectId,
-    ref: "CommunicationType"
+    type: String
   },
   message: {
     type: String,
@@ -43,7 +39,4 @@ var communicationMessage = new Schema({
     "default": false
   }
 });
-
-var _default = _mongoose["default"].model('CommunicationMessage', communicationMessage);
-
-exports["default"] = _default;
+module.exports = mongoose.model('CommunicationMessage', communicationMessage);

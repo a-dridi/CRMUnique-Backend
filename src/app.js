@@ -3,11 +3,10 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('config');
-const apiResponse = require("../src/util/api-response");
 
 
 const app = express();
-const apiRoute = require('../src/routes/api');
+const apiRoute = require('./routes/api');
 
 mongoose.connect(config.DBHost, {
         useNewUrlParser: true,

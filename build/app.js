@@ -1,23 +1,20 @@
 "use strict";
 
-var _express = _interopRequireDefault(require("express"));
+var express = require('express');
 
-var _path = _interopRequireDefault(require("path"));
+var path = require('path');
 
-var _cors = _interopRequireDefault(require("cors"));
+var cors = require('cors');
 
-var _mongoose = _interopRequireDefault(require("mongoose"));
+var mongoose = require('mongoose');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var config = require('config');
 
-var apiRouter = require("./routes/api");
+var app = express();
 
-var apiResponse = require("./helpers/api-response");
+var apiRoute = require('./routes/api');
 
-var app = (0, _express["default"])();
-var DATABASE_CONNECTION = process.env.MONGO_DB_URL;
-
-_mongoose["default"].connect(DATABASE_CONNECTION, {
+mongoose.connect(config.DBHost, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(function () {
@@ -29,18 +26,17 @@ _mongoose["default"].connect(DATABASE_CONNECTION, {
   console.log(err);
   process.exit(1);
 });
-
-var dbConnection = _mongoose["default"].connection;
+var dbConnection = mongoose.connection;
 dbConnection.once("open", function () {
-  console.log("OK -- Mongo DB coonection established - Connected to %s", DATABASE_CONNECTION);
+  console.log("OK -- Mongo DB coonection established - Connected to %s", config.DBHost);
 });
-app.use(_express["default"].json());
-app.use(_express["default"].urlencoded({
+app.use(express.json());
+app.use(express.urlencoded({
   extended: false
 }));
-app.use((0, _cors["default"])());
-app.use("/data/", apiRouter);
+app.use(cors());
+app.use("/data/", apiRoute);
 app.all("*", function (req, res) {
-  return apiResponse.notFoundResponse(res, "API endpoint not found!");
+  return res.status(404).json("API endpoint not found!");
 });
 module.exports = app;

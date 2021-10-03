@@ -1,15 +1,8 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var mongoose = require('mongoose');
 
-var _mongoose = _interopRequireDefault(require("mongoose"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var Schema = _mongoose["default"].Schema;
+var Schema = mongoose.Schema;
 var customer = new Schema({
   companyName: {
     type: String
@@ -79,7 +72,4 @@ var customer = new Schema({
     "default": false
   }
 });
-
-var _default = _mongoose["default"].model('Customer', customer);
-
-exports["default"] = _default;
+module.exports = mongoose.model('Customer', customer);

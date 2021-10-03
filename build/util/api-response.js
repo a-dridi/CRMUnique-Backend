@@ -1,13 +1,13 @@
 "use strict";
 
 exports.successResponse = function (res, data) {
-  return res.status(200).json(data);
+  res.send(200, data);
 };
 
 exports.errorResponse = function (res, data) {
-  return res.status(400).json(data);
+  res.send(400, data);
 };
 
 exports.notFoundResponse = function (res, data) {
-  return res.status(404).json(data);
+  res.send(404, data);
 };

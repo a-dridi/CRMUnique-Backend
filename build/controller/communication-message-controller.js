@@ -4,43 +4,53 @@ var CommunicationMessage = require("../model/communication-message");
 
 var ApiResponse = require("../util/api-response");
 /**
- * Create schema that will be return through the api. 
- * @param {*} data 
- */
-
-
-function CommunicationMessageData(data) {
-  this.id = data._id;
-  this.communicationType = data.communicationType;
-  this.message = data.message;
-  this.tag1 = data.tag1;
-  this.tag2 = data.tag2;
-  this.tag3 = data.tag3;
-  this.tag4 = data.tag4;
-  this.tag5 = data.tag5;
-  this.createdDate = data.createdDate;
-}
-/**
  * Get a list of communication messages.
  * @returns Communication Messages. Array object
  */
 
 
-exports.communicationMessageList = function (req, res) {
+exports.communicationMessageList = function (req, res, next) {
   try {
     CommunicationMessage.find({
-      deleted: false
+      deleted: false,
+      customerId: req.params.customerId
     }, "_id communicationType message tag1 tag2 tag3 tag4 tag5 createdDate").then(function (communicationMessages) {
-      return ApiResponse.successResponse(communicationMessages);
+      ApiResponse.successResponse(res, communicationMessages);
     });
   } catch (err) {
-    return ApiResponse.errorResponse(err);
+    ApiResponse.errorResponse(res, err);
   }
 };
+/**
+ * Get a communication message by the id in the uri.
+ * @returns Communication Message. Object
+ */
 
-exports.communicationMessageSave = function (req, res) {
+
+exports.communicationMessageById = function (req, res, next) {
+  try {
+    CommunicationMessage.findById({
+      _id: req.params.id
+    }, function (err, communicationMessage) {
+      if (err) {
+        ApiResponse.errorResponse(res, err);
+      } else {
+        ApiResponse.successResponse(res, communicationMessage);
+      }
+    });
+  } catch (err) {
+    ApiResponse.errorResponse(res, err);
+  }
+};
+/**
+ * Save communication message with the data passed in the POST request.
+ */
+
+
+exports.communicationMessageSave = function (req, res, next) {
   try {
     var newCommunicationMessage = new CommunicationMessage({
+      customerId: req.body.customerId,
       communicationType: req.body.communicationType,
       message: req.body.message,
       tag1: req.body.tag1,
@@ -52,18 +62,25 @@ exports.communicationMessageSave = function (req, res) {
       deleted: false
     });
     newCommunicationMessage.save().then(function (savedCommunicationMessage) {
-      return ApiResponse.successResponse(savedCommunicationMessage);
+      ApiResponse.successResponse(res, savedCommunicationMessage);
     })["catch"](function (err) {
-      return ApiResponse.errorResponse(err);
+      console.log("ERROR");
+      console.log(err);
+      ApiResponse.errorResponse(res, err);
     });
   } catch (err) {
-    return ApiResponse.errorResponse(err);
+    ApiResponse.errorResponse(res, err);
   }
 };
+/**
+ * pdate message with the data passed in the POST request.
+ */
 
-exports.communicationMessageUpdate = function (req, res) {
+
+exports.communicationMessageUpdate = function (req, res, next) {
   var updateCommunicationMessage = new CommunicationMessage({
-    _id: req.body.id,
+    _id: req.body._id,
+    customerId: req.body.customerId,
     communicationType: req.body.communicationType,
     message: req.body.message,
     tag1: req.body.tag1,
@@ -75,20 +92,24 @@ exports.communicationMessageUpdate = function (req, res) {
     deleted: false
   });
   updateCommunicationMessage.save().then(function (updatedCommunicationMessage) {
-    return ApiResponse.successResponse(updatedCommunicationMessage);
+    ApiResponse.successResponse(res, updatedCommunicationMessage);
   })["catch"](function (err) {
-    return ApiResponse.errorResponse(err);
+    ApiResponse.errorResponse(res, err);
   });
 };
+/**
+ * Delete communication message by the ID in the uri.
+ */
 
-exports.communicationMessageDeleteById = function (req, res) {
-  CommunicationMessage.findByAndRemove({
+
+exports.communicationMessageDeleteById = function (req, res, next) {
+  CommunicationMessage.findByIdAndRemove({
     _id: req.params.id
   }, function (err, deletedCommunicationMessage) {
     if (err) {
-      ApiResponse.errorResponse(err);
+      ApiResponse.errorResponse(res, err);
     } else {
-      ApiResponse.successResponse(deletedCommunicationMessage);
+      ApiResponse.successResponse(res, deletedCommunicationMessage);
     }
   });
 };

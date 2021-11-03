@@ -14,6 +14,10 @@ The test cases are in the path: [/test/routes/](https://github.com/a-dridi/CRMUn
 
 ## Configuration
 
+PLEASE CREATE the following databases in your MongoDB installations:
+crmunique, mailreminderjobs
+Please check also the config file "default.json" in the folder config. Adjust this file to your used URLs and settings.  
+
 ## Run
 To start the application directly. You need to have NodeJS and MongoDB installed.
 
@@ -74,4 +78,12 @@ Copy the content of the folder "build" to your server.
 * **A. Dridi** - [a-dridi](https://github.com/a-dridi/)
 * Check licences of dependencies
 
+
+
+            newCustomer.save().then(savedCustomer => {
+
+                })
+                .catch(err => {
+                    console.log(err);
+                });
 

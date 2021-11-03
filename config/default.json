@@ -1,1 +1,9 @@
-{ "DBHost": "mongodb://localhost:27017/crmunique" }
+{ "DBHost": "mongodb://localhost:27017/crmunique",
+  "DBReminder": "mongodb://localhost:27017/mailreminderjobs",
+  "MailHostserver": "smtp.mail.tld",
+  "MailPort": 587,
+  "MailFullName": "John Doe",
+  "MailMailAddress":"smtp_mail_account@mail.tld",
+  "MailUsername": "MAIL_USERNAME",
+  "MailPassword": "MAIL_PASSWORD"
+}

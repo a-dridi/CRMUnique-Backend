@@ -7,9 +7,9 @@ services:
   ports:
   - "3000:3000" 
   links:
-  - database # link this service to the database service
+  - database #link this service to the database service
 
  database: #db server (mongodb)
-  image: mongo 
+  image: mongo:4.4.9
   ports:
   - "27017:27017" 

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let mailReminder = new Schema({
+    customerId: {
+        type: String, 
+        required: true
+    },
     customerName: {
         type: String,
         required: true

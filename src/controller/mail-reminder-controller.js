@@ -21,6 +21,7 @@ exports.createOneTimeReminder = function (req, res, next) {
     try {
 
         let newReminder = new MailReminder({
+            customerId: req.body.customerId,
             customerName: req.body.customerName,
             customerEmail: req.body.customerEmail,
             reminderTitle: req.body.reminderTitle,
@@ -54,6 +55,14 @@ exports.createOneTimeReminder = function (req, res, next) {
                 html: req.body.reminderText
             });
 
+            MailReminder.findByIdAndRemove({
+                _id: req.body.customerId
+            }, (err, deletedMailReminder) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            
             return "Email Sent with the id: " + sentMail.messageId;
         });
         let dateOfReminder;
@@ -80,8 +89,8 @@ exports.createOneTimeReminder = function (req, res, next) {
 exports.getAllReminderList = function (req, res, next) {
     try {
         MailReminder.find({
-            deleted: false
-        }, "_id customerName customerEmail reminderTitle reminderText reminderDate").then((customers) => {
+            customerId: req.params.customerId
+        }, "_id customerId customerName customerEmail reminderTitle reminderText reminderDate").then((customers) => {
             ApiResponse.successResponse(res, customers);
         });
     } catch (err) {

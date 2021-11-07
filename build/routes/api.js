@@ -15,10 +15,13 @@ var customerNoteRouter = require("../routes/customer-note-api");
 
 var customerRouter = require("../routes/customer-api");
 
+var mailReminderRouter = require("../routes/mail-reminder-api");
+
 var app = express();
-app.use("/communicationMessage/", communicationMessageRouter);
-app.use("/communicationType/", communicationTypeRouter);
-app.use("/customField/", customFieldRouter);
-app.use("/customerNote/", customerNoteRouter);
-app.use("/customer/", customerRouter);
+app.use("/communicationMessage", communicationMessageRouter);
+app.use("/communicationType", communicationTypeRouter);
+app.use("/customField", customFieldRouter);
+app.use("/customerNote", customerNoteRouter);
+app.use("/customer", customerRouter);
+app.use("/mailReminder", mailReminderRouter);
 module.exports = app;

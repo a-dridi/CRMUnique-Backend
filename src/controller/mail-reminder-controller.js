@@ -72,7 +72,7 @@ exports.createOneTimeReminder = function (req, res, next) {
             dateOfReminder = req.body.reminderDate;
         }
 
-        let scheduledJob = agenda.schedule(dateOfReminder, "sendOneTimeMailReminder");
+        let scheduledJob = Agenda.schedule(dateOfReminder, "sendOneTimeMailReminder");
 
     } catch (err) {
 

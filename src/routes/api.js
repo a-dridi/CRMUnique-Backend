@@ -17,6 +17,6 @@ app.use("/communicationType", communicationTypeRouter);
 app.use("/customField", customFieldRouter);
 app.use("/customerNote", customerNoteRouter);
 app.use("/customer", customerRouter);
-app.user("/mailReminder", mailReminderRouter);
+app.use("/mailReminder", mailReminderRouter);
 
 module.exports = app;

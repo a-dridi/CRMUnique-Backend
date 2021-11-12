@@ -7,6 +7,6 @@ router.get("/all/:customerId", CustomerNoteController.customerNoteList);
 router.get("/get/byId/:id", CustomerNoteController.customerNoteById);
 router.post("/add", CustomerNoteController.customerNoteSave);
 router.post("/update", CustomerNoteController.customerNoteUpdate);
-router.get("/delete/byId/:id", CustomerNoteController.customerNoteDeleteById);
+router.delete("/delete/byId/:id", CustomerNoteController.customerNoteDeleteById);
 
 module.exports = router;

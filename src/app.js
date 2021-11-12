@@ -4,19 +4,23 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('config');
 
+const APP_PORT = 3000;
 
 const app = express();
 const apiRoute = require('./routes/api');
+console.log("*** CRM Unique ***");
+
+app.listen(APP_PORT, () => {
+    console.log("> This server app isrunning on port: " + APP_PORT);
+});
 
 mongoose.connect(config.DBHost, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(() => {
-        console.log("*** CRM Unique ***");
-        console.log("APP RUNNING");
+        console.log("APP RUNNING" );
     })
     .catch(err => {
-        console.log("*** CRM Unique ***");
         console.log("ERROR - ERROR: Could not start app, because database connection could not be established!");
         console.log(err);
         process.exit(1);

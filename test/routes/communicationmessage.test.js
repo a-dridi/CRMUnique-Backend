@@ -149,7 +149,7 @@ describe("# CommunicationMessages API Tests", () => {
                         .end((err, res) => {
                             const createdId = res.body._id;
                             chai.request(serverApp)
-                                .get('/data/communicationMessage/delete/byId/' + createdId)
+                                .delete('/data/communicationMessage/delete/byId/' + createdId)
                                 .end((err, res) => {
                                     res.should.have.status(200);
                                     done();

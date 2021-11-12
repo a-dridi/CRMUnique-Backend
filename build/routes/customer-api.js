@@ -9,5 +9,5 @@ router.get("/all", CustomerController.customerList);
 router.get("/get/byId/:id", CustomerController.customerById);
 router.post("/add", CustomerController.customerSave);
 router.post("/update", CustomerController.customerUpdate);
-router.get("/delete/byId/:id", CustomerController.customerDeleteById);
+router["delete"]("/delete/byId/:id", CustomerController.customerDeleteById);
 module.exports = router;

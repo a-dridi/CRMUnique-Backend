@@ -107,7 +107,7 @@ describe("# CustomerNote API Tests", () => {
                 .end((err, res) => {
                     const createdId = res.body._id;
                     chai.request(serverApp)
-                        .get('/data/customerNote/delete/byId/' + createdId)
+                        .delete('/data/customerNote/delete/byId/' + createdId)
                         .end((err, res) => {
                             res.should.have.status(200);
                             done();

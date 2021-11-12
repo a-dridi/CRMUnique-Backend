@@ -9,5 +9,5 @@ router.get("/all", CommunicationTypeController.communicationTypeList);
 router.get("/get/byId/:id", CommunicationTypeController.communicationTypeById);
 router.post("/add", CommunicationTypeController.communicationTypeSave);
 router.post("/update", CommunicationTypeController.communicationTypeUpdate);
-router.get("/delete/byId/:id", CommunicationTypeController.communicationTypeDeleteById);
+router["delete"]("/delete/byId/:id", CommunicationTypeController.communicationTypeDeleteById);
 module.exports = router;
